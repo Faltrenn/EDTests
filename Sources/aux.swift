@@ -13,9 +13,9 @@ enum Algorithms: CaseIterable {
     enum Cases: CaseIterable {
         case better, medium, worst
     }
-    
+
     case selection, insertion, merge, quick, distribution
-    
+
     func hasCase(cs: Cases) -> Bool {
         switch self {
         case .selection:
@@ -30,16 +30,16 @@ enum Algorithms: CaseIterable {
             return cs == .medium
         }
     }
-    
+
 }
 
 
 func openFile(url: URL, execution: (FileHandle) -> Void) throws {
     try "".write(to: url, atomically: true, encoding: .utf8)
     let file = try FileHandle(forWritingTo: url)
-    
+
     execution(file)
-    
+
     file.closeFile()
 }
 
@@ -59,7 +59,7 @@ func testAlgorithm(file: FileHandle, arr: inout [Int], difficulty: Int, executio
     let t1 = DispatchTime.now().uptimeNanoseconds
     execution(&arr)
     let delta = DispatchTime.now().uptimeNanoseconds - t1
-    
+
     let line = "\(difficulty) \(delta)\n"
     if let data = line.data(using: .utf8) {
         file.seekToEndOfFile()
@@ -102,3 +102,21 @@ func getTestArray(cs: Algorithms.Cases, n: Int) -> [Int]{
 //        }
 //    }
 //}
+
+extension FileManager {
+     func directoryExists(at: URL) -> Bool {
+         var isDirectory : ObjCBool = true
+         let exists = FileManager.default.fileExists(atPath: at.path(percentEncoded: false), isDirectory: &isDirectory)
+         return exists && isDirectory.boolValue
+     }
+
+     func createDirectoryIfNotExists(at: URL) {
+         if !directoryExists(at: at) {
+             do {
+                 try FileManager.default.createDirectory(at: at, withIntermediateDirectories: false)
+             } catch {
+                 print(error)
+             }
+         }
+     }
+ }
