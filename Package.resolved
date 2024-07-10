@@ -1,0 +1,15 @@
+{
+  "originHash" : "babb2b24c9c6efb239bd56118e1d14b9b8520b15130b4bc0bf3912b367b4bf7f",
+  "pins" : [
+    {
+      "identity" : "estrutura-de-dados",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Faltrenn/estrutura-de-dados",
+      "state" : {
+        "branch" : "main",
+        "revision" : "935d242869b7bf4275b4616966eb9d67bd0bf952"
+      }
+    }
+  ],
+  "version" : 3
+}

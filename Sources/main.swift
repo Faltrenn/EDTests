@@ -8,7 +8,6 @@
 import Foundation
 import EstruturaDeDados
 
-
-
-print("Hello, World!")
-
+var arr = [0, 3, 1, 5, 9, 13, 21, 20, 7]
+quickSort(v: &arr)
+print(arr)
