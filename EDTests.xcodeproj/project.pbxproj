@@ -10,6 +10,7 @@
 		CCE270FB2C3EF5A200A024BA /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE270FA2C3EF5A200A024BA /* main.swift */; };
 		CCE271032C3EF5AE00A024BA /* EstruturaDeDados in Frameworks */ = {isa = PBXBuildFile; productRef = CCE271022C3EF5AE00A024BA /* EstruturaDeDados */; };
 		CCE271062C3EF5EE00A024BA /* EstruturaDeDados in Frameworks */ = {isa = PBXBuildFile; productRef = CCE271052C3EF5EE00A024BA /* EstruturaDeDados */; };
+		CCE271082C3EF62900A024BA /* aux.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE271072C3EF62900A024BA /* aux.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -27,6 +28,7 @@
 /* Begin PBXFileReference section */
 		CCE270F72C3EF5A200A024BA /* EDTests */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = EDTests; sourceTree = BUILT_PRODUCTS_DIR; };
 		CCE270FA2C3EF5A200A024BA /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		CCE271072C3EF62900A024BA /* aux.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = aux.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 			isa = PBXGroup;
 			children = (
 				CCE270FA2C3EF5A200A024BA /* main.swift */,
+				CCE271072C3EF62900A024BA /* aux.swift */,
 			);
 			path = EDTests;
 			sourceTree = "<group>";
@@ -131,6 +134,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CCE271082C3EF62900A024BA /* aux.swift in Sources */,
 				CCE270FB2C3EF5A200A024BA /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
