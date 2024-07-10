@@ -3,11 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		CCE270FB2C3EF5A200A024BA /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE270FA2C3EF5A200A024BA /* main.swift */; };
+		CCE271032C3EF5AE00A024BA /* EstruturaDeDados in Frameworks */ = {isa = PBXBuildFile; productRef = CCE271022C3EF5AE00A024BA /* EstruturaDeDados */; };
+		CCE271062C3EF5EE00A024BA /* EstruturaDeDados in Frameworks */ = {isa = PBXBuildFile; productRef = CCE271052C3EF5EE00A024BA /* EstruturaDeDados */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -32,6 +34,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CCE271032C3EF5AE00A024BA /* EstruturaDeDados in Frameworks */,
+				CCE271062C3EF5EE00A024BA /* EstruturaDeDados in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +82,10 @@
 			dependencies = (
 			);
 			name = EDTests;
+			packageProductDependencies = (
+				CCE271022C3EF5AE00A024BA /* EstruturaDeDados */,
+				CCE271052C3EF5EE00A024BA /* EstruturaDeDados */,
+			);
 			productName = EDTests;
 			productReference = CCE270F72C3EF5A200A024BA /* EDTests */;
 			productType = "com.apple.product-type.tool";
@@ -106,6 +114,9 @@
 				Base,
 			);
 			mainGroup = CCE270EE2C3EF5A200A024BA;
+			packageReferences = (
+				CCE271042C3EF5EE00A024BA /* XCLocalSwiftPackageReference "../EstruturaDeDados" */,
+			);
 			productRefGroup = CCE270F82C3EF5A200A024BA /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -289,6 +300,24 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		CCE271042C3EF5EE00A024BA /* XCLocalSwiftPackageReference "../EstruturaDeDados" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../EstruturaDeDados;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CCE271022C3EF5AE00A024BA /* EstruturaDeDados */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = EstruturaDeDados;
+		};
+		CCE271052C3EF5EE00A024BA /* EstruturaDeDados */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = EstruturaDeDados;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CCE270EF2C3EF5A200A024BA /* Project object */;
 }
