@@ -12,9 +12,27 @@ import EstruturaDeDados
 enum Algorithms: CaseIterable {
     enum Cases: CaseIterable {
         case better, medium, worst
+
     }
 
     case selection, insertion, merge, quick, distribution
+
+    var function: (_ arr: inout [Int]) -> Void {
+        get {
+            switch self {
+                case .selection:
+                    return selectionSort
+                case .insertion:
+                    return insertionSort
+                case .merge:
+                    return mergeSort
+                case .quick:
+                    return quickSort
+                case .distribution:
+                    return distributionSort
+            }
+        }
+    }
 
     func hasCase(cs: Cases) -> Bool {
         switch self {
@@ -34,23 +52,32 @@ enum Algorithms: CaseIterable {
     func getTestFileName(cs: Cases) -> String {
         return "\(self)-\(cs).txt"
     }
-    
-    var function: (_ arr: inout [Int]) -> Void {
-        get {
-            switch self {
-                case .selection: 
-                    return selectionSort
-                case .insertion:
-                    return insertionSort
-                case .merge:
-                    return mergeSort
-                case .quick:
-                    return quickSort
-                case .distribution:
-                    return distributionSort
-            }
+
+    func getTestArray(cs: Cases, difficulty: Int) -> [Int] {
+        if cs == .medium {
+            return getRandomArray(n: difficulty)
         }
+        if self == .insertion {
+            return cs == .better ? Array(1...difficulty) : Array((1...difficulty).reversed())
+        }
+        // Se executa isso, ele definitivamente é o quick sort
+        return cs == .better ? bestCaseQuicksort(n: difficulty) : Array(1...difficulty)
     }
+}
+
+func bestCaseQuicksort(n: Int) -> [Int] {
+    guard n > 0 else { return [] }
+    var array = Array(1...n)
+    createBestCaseArray(&array, start: 0, end: n - 1)
+    return array
+}
+
+func createBestCaseArray(_ array: inout [Int], start: Int, end: Int) {
+    if start >= end { return }
+    let mid = (start + end) / 2
+    array.swapAt(start, mid)
+    createBestCaseArray(&array, start: start + 1, end: mid)
+    createBestCaseArray(&array, start: mid + 1, end: end)
 }
 
 func openFile(url: URL, execution: (FileHandle) -> Void) {

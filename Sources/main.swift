@@ -16,9 +16,9 @@ for algorithm in Algorithms.allCases {
         if algorithm.hasCase(cs: cs) {
             print("\(algorithm) start")
             openFile(url: testPath.appending(path: algorithm.getTestFileName(cs: cs))) { file in
-                for i in stride(from: 100, through: 1000, by: 100) {
+                for i in stride(from: 100, through: 10000, by: 100) {
                     var times: [UInt64] = []
-                    var arr = getRandomArray(n: i)
+                    var arr = algorithm.getTestArray(cs: cs, difficulty: i)
                     for _ in 1...10 {
                         times.append(testAlgorithm(file: file, arr: &arr, execution: algorithm.function))
                     }
