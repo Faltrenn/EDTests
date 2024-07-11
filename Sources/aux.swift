@@ -31,8 +31,25 @@ enum Algorithms: CaseIterable {
         }
     }
 
-    func testFileName(cs: Cases) -> String {
+    func getTestFileName(cs: Cases) -> String {
         return "\(self)-\(cs).txt"
+    }
+    
+    var function: (_ arr: inout [Int]) -> Void {
+        get {
+            switch self {
+                case .selection: 
+                    return selectionSort
+                case .insertion:
+                    return insertionSort
+                case .merge:
+                    return mergeSort
+                case .quick:
+                    return quickSort
+                case .distribution:
+                    return distributionSort
+            }
+        }
     }
 }
 
@@ -57,16 +74,10 @@ func getRandomArray(n: Int) -> [Int] {
     return list
 }
 
-func testAlgorithm(file: FileHandle, arr: inout [Int], difficulty: Int, execution: (inout [Int]) -> Void) {
+func testAlgorithm(file: FileHandle, arr: inout [Int], execution: (inout [Int]) -> Void) -> UInt64 {
     let t1 = DispatchTime.now().uptimeNanoseconds
     execution(&arr)
-    let delta = DispatchTime.now().uptimeNanoseconds - t1
-
-    let line = "\(difficulty) \(delta)\n"
-    if let data = line.data(using: .utf8) {
-        file.seekToEndOfFile()
-        file.write(data)
-    }
+    return DispatchTime.now().uptimeNanoseconds - t1
 }
 
 func getTestArray(cs: Algorithms.Cases, n: Int) -> [Int]{
