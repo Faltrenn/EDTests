@@ -1,5 +1,5 @@
 {
-  "originHash" : "babb2b24c9c6efb239bd56118e1d14b9b8520b15130b4bc0bf3912b367b4bf7f",
+  "originHash" : "faa848f929e781df8b4234d27d77457ccc7ebc06d8437cc70e0d973b5411ee77",
   "pins" : [
     {
       "identity" : "estrutura-de-dados",
@@ -7,7 +7,7 @@
       "location" : "https://github.com/Faltrenn/estrutura-de-dados",
       "state" : {
         "branch" : "main",
-        "revision" : "935d242869b7bf4275b4616966eb9d67bd0bf952"
+        "revision" : "61fd700fa9690f093a0b97149add32d1268c4f98"
       }
     }
   ],
