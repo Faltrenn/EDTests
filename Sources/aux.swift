@@ -30,6 +30,10 @@ enum Algorithms: CaseIterable {
             return cs == .medium
         }
     }
+
+    func testName(cs: Cases) -> String {
+        return "\(self)-\(cs)"
+    }
 }
 
 func openFile(url: URL, execution: (FileHandle) -> Void) throws {
@@ -39,10 +43,6 @@ func openFile(url: URL, execution: (FileHandle) -> Void) throws {
     execution(file)
 
     file.closeFile()
-}
-
-func getTestFileName(prefix: String, cs: Algorithms.Cases) -> String {
-    "\(prefix)-\(String(describing: cs).lowercased()).txt"
 }
 
 func getRandomArray(n: Int) -> [Int] {
