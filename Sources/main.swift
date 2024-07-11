@@ -8,7 +8,9 @@
 import Foundation
 import EstruturaDeDados
 
-FileManager.default.createDirectoryIfNotExists(at: .currentDirectory().appending(path: "tests"))
+var testPath: URL = .currentDirectory().appending(path: "tests")
+
+FileManager.default.createDirectoryIfNotExists(at: testPath)
 
 var arr = [0, 3, 1, 5, 9, 13, 21, 20, 7]
 quickSort(v: &arr)

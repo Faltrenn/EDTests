@@ -30,9 +30,7 @@ enum Algorithms: CaseIterable {
             return cs == .medium
         }
     }
-
 }
-
 
 func openFile(url: URL, execution: (FileHandle) -> Void) throws {
     try "".write(to: url, atomically: true, encoding: .utf8)
