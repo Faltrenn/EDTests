@@ -8,7 +8,8 @@
 import Foundation
 import EstruturaDeDados
 
-var testPath: URL = .currentDirectory().appending(path: "tests")
+
+var testPath: URL = URL(fileURLWithPath: FileManager.default.currentDirectoryPath, isDirectory: true).appending(path: "tests")
 FileManager.default.createDirectoryIfNotExists(at: testPath)
 
 let algorithm: Algorithms = .insertion
