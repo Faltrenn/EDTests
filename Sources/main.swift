@@ -9,15 +9,16 @@ import Foundation
 import EstruturaDeDados
 
 
-var testPath: URL = URL(fileURLWithPath: FileManager.default.currentDirectoryPath, isDirectory: true).appending(path: "tests")
+var testPath: URL = URL(fileURLWithPath: FileManager.default.currentDirectoryPath + "/tests", isDirectory: true)
 FileManager.default.createDirectoryIfNotExists(at: testPath)
 
-let algorithm: Algorithms = .insertion
+print(URL(fileURLWithPath: algorithm.getTestFileName(cs: .better), relativeTo: testPath).path)
+let algorithm: Algorithms = .quick
 print("start")
-openFile(url: testPath.appending(path: algorithm.getTestFileName(cs: .medium))) { file in
+openFile(url: URL(fileURLWithPath: algorithm.getTestFileName(cs: .better), relativeTo: testPath)) { file in
     for i in stride(from: 100, through: 10000, by: 100) {
         var times: [UInt64] = []
-        var arr = algorithm.getTestArray(cs: .medium, difficulty: i)
+        var arr = algorithm.getTestArray(cs: .better, difficulty: i)
         for _ in 1...10 {
             times.append(testAlgorithm(file: file, arr: &arr, execution: algorithm.function))
         }
