@@ -31,18 +31,22 @@ enum Algorithms: CaseIterable {
         }
     }
 
-    func testName(cs: Cases) -> String {
-        return "\(self)-\(cs)"
+    func testFileName(cs: Cases) -> String {
+        return "\(self)-\(cs).txt"
     }
 }
 
-func openFile(url: URL, execution: (FileHandle) -> Void) throws {
-    try "".write(to: url, atomically: true, encoding: .utf8)
-    let file = try FileHandle(forWritingTo: url)
+func openFile(url: URL, execution: (FileHandle) -> Void) {
+    do {
+        try "".write(to: url, atomically: true, encoding: .utf8)
+        let file = try FileHandle(forWritingTo: url)
 
-    execution(file)
+        execution(file)
 
-    file.closeFile()
+        file.closeFile()
+    } catch {
+        print(error)
+    }
 }
 
 func getRandomArray(n: Int) -> [Int] {
