@@ -146,7 +146,7 @@ func getTestArray(cs: Algorithms.Cases, n: Int) -> [Int]{
 extension FileManager {
      func directoryExists(at: URL) -> Bool {
          var isDirectory : ObjCBool = true
-         let exists = FileManager.default.fileExists(atPath: at.path(percentEncoded: false), isDirectory: &isDirectory)
+         let exists = FileManager.default.fileExists(atPath: at.path, isDirectory: &isDirectory)
          return exists && isDirectory.boolValue
      }
 
