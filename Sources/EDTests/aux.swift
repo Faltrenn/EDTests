@@ -111,7 +111,7 @@ func testAlgorithm(file: FileHandle, arr: inout [Int32], execution: (inout [Int3
     return DispatchTime.now().uptimeNanoseconds - t1
 }
 
-func makeAndSaveTest(algorithm: Algorithms, cs: Algorithms.Cases) {
+func makeAndSaveTest(algorithm: Algorithms, cs: Algorithms.Cases, testPath: URL) {
     guard algorithm.hasCase(cs: cs) else {
         print("\(algorithm) doesnt have \(cs) case")
         return

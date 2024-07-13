@@ -12,4 +12,4 @@ import EstruturaDeDados
 var testPath: URL = URL(fileURLWithPath: FileManager.default.currentDirectoryPath + "/tests", isDirectory: true)
 FileManager.default.createDirectoryIfNotExists(at: testPath)
 
-makeAndSaveTest(algorithm: .insertion, cs: .worst)
+makeAndSaveTest(algorithm: .insertion, cs: .worst, testPath: testPath)
