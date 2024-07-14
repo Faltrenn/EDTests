@@ -1,26 +1,46 @@
 import matplotlib.pyplot as plt
 from matplotlib.ticker import ScalarFormatter
+import os
+import sys
 
-# Ler os dados do arquivo
+
+def get_case_by_arg(arg: str) -> str:
+    if arg == "b":
+        return "better"
+    if arg == "m":
+        return "medium"
+    return "worst"
+
+args = sys.argv[1:]
+
 x_values = []
 y_values = []
 
-files = ["insertion"]
+file = []
+cases = []
+start_cases = -1
+if "-c" in args:
+    start_cases = args.index("-c") + 1
+    files = args[1: start_cases]
+    cases = args[start_cases:]
+else:
+    cases = ["b", "m", "w"]
+    files = args[1:]
+
 files_path = []
 for file in files:
-    for suffix in ("better", "medium", "worst"):
-        files_path.append(file + "-" + suffix + ".txt")
-
-
-colors = ["r", "g", "b"]
+    for case in cases:
+        file_path = f"tests/{file}-{get_case_by_arg(case)}.txt"
+        if os.path.isfile(file_path):
+            files_path.append(file_path)
 
 x_values = list(range(1, 101))
 for i, file in enumerate(files_path):
     y_values.append([])
-    with open("tests/" + file, 'r') as f:
+    with open(file, 'r') as f:
         for line in f:
             y_values[i].append(int(line))
-    plt.plot(x_values, y_values[i], color=colors[i], label=file)
+    plt.plot(x_values, y_values[i], label=file[6:-4])
 plt.xlabel('Tamanho')
 plt.ylabel('Tempo(ns)')
 plt.title('Gráfico de Linha')

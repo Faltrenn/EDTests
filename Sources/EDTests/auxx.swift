@@ -27,7 +27,7 @@ enum Algorithms: CaseIterable {
                 case .merge:
                     return mergeSort
                 case .quick:
-                    return quickSort
+                    return { quick_sort_c(&$0, 0, Int32($0.count-1)) }
                 case .distribution:
                     return distributionSort
             }
@@ -75,9 +75,9 @@ func bestCaseQuicksort(n: Int32) -> [Int32] {
 func createBestCaseArray(_ array: inout [Int32], start: Int32, end: Int32) {
     if start >= end { return }
     let mid = (start + end) / 2
-    array.swapAt(Int(start), Int(mid))
     createBestCaseArray(&array, start: start + 1, end: mid)
     createBestCaseArray(&array, start: mid + 1, end: end)
+    array.swapAt(Int(start), Int(mid))
 }
 
 func openFile(url: URL, execution: (FileHandle) -> Void) {
