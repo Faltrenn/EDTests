@@ -1,5 +1,4 @@
 #include "include/teste.h"
-#include <stdio.h>
 
 void swap_c(int *a, int *b) {
     int m;

@@ -6,16 +6,14 @@ import PackageDescription
 let package = Package(
     name: "EDTests",
     platforms: [.macOS(.v13)],
-    dependencies: [
-        .package(url: "https://github.com/Faltrenn/estrutura-de-dados", branch: "main")
-    ],
     targets: [
         .target(name: "CCode", path: "Sources/CCode"),
+        .target(name: "EstruturaDeDados", path: "Sources/EstruturaDeDados"),
         .executableTarget(
             name: "EDTests",
             dependencies: [
-                .product(name: "EstruturaDeDados", package: "estrutura-de-dados"),
-                "CCode"
+                "CCode",
+                "EstruturaDeDados"
             ]
         ),
     ]

@@ -6,10 +6,9 @@
 //
 
 import Foundation
-import EstruturaDeDados
 
 
-var testPath: URL = URL(fileURLWithPath: FileManager.default.currentDirectoryPath + "/tests", isDirectory: true)
-FileManager.default.createDirectoryIfNotExists(at: testPath)
+//var testPath: URL = URL(fileURLWithPath: FileManager.default.currentDirectoryPath + "/tests", isDirectory: true)
+//FileManager.default.createDirectoryIfNotExists(at: testPath)
 
-makeAndSaveTest(algorithm: .quick, cs: .better, testPath: testPath)
+//makeAndSaveTest(algorithm: .quick, cs: .better, testPath: testPath)

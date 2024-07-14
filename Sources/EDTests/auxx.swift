@@ -6,8 +6,8 @@
 //
 
 import Foundation
-import EstruturaDeDados
 import CCode
+import EstruturaDeDados
 
 
 enum Algorithms: CaseIterable {
