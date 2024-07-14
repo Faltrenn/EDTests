@@ -28,7 +28,7 @@ enum Algorithms: CaseIterable {
                 case .merge:
                     return mergeSort
                 case .quick:
-                    return { quick_sort_c(&$0, 0, Int32($0.count-1)) }
+                    return quickSort
                 case .distribution:
                     return distributionSort
             }
@@ -56,14 +56,11 @@ enum Algorithms: CaseIterable {
 
     func getTestArray(cs: Cases, difficulty: Int32) -> [Int32] {
         if cs == .medium {
-            print("\(self) \(cs)")
             return getRandomArray(n: difficulty)
         }
         if self == .insertion {
-            print("\(self) \(cs)")
             return cs == .better ? Array(1...difficulty) : Array((1...difficulty).reversed())
         }
-        print("\(self) \(cs)")
         // Se executa isso, ele definitivamente é o quick sort
         return cs == .better ? bestCaseQuicksort(n: difficulty) : Array(1...difficulty)
     }
@@ -105,7 +102,7 @@ func getRandomArray(n: Int32) -> [Int32] {
     return list
 }
 
-func testAlgorithm(file: FileHandle, arr: inout [Int32], execution: (inout [Int32]) -> Void) -> UInt64 {
+func testAlgorithm(arr: inout [Int32], execution: (inout [Int32]) -> Void) -> UInt64 {
     let t1 = DispatchTime.now().uptimeNanoseconds
     execution(&arr)
     return DispatchTime.now().uptimeNanoseconds - t1
@@ -116,13 +113,13 @@ func makeAndSaveTest(algorithm: Algorithms, cs: Algorithms.Cases, testPath: URL)
         print("\(algorithm) doesnt have \(cs) case")
         return
     }
-    print("\(algorithm) \(cs) start")
+    print("start \(algorithm) \(cs)")
     openFile(url: testPath.appending(path: algorithm.getTestFileName(cs: cs))) { file in
         for i in stride(from: 100, through: 10000, by: 100) {
             var times: [UInt64] = []
-            var arr = algorithm.getTestArray(cs: cs, difficulty: Int32(i))
             for _ in 1...10 {
-                times.append(testAlgorithm(file: file, arr: &arr, execution: algorithm.function))
+                var arr = algorithm.getTestArray(cs: cs, difficulty: Int32(i))
+                times.append(testAlgorithm(arr: &arr, execution: algorithm.function))
             }
             times.sort()
             let time = (times[4] + times[5])/2
