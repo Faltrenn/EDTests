@@ -13,7 +13,6 @@ import EstruturaDeDados
 enum Algorithms: CaseIterable {
     enum Cases: CaseIterable {
         case better, medium, worst
-
     }
 
     case selection, insertion, merge, quick, distribution
