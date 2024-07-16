@@ -1,0 +1,88 @@
+Lin do projeto no github: https://github.com/Faltrenn/EDTests
+O pdf do trabalho está no diretório raíz.
+Os algoritmos estão na pasta EstruturaDeDados.
+Toda a parte auxiliar, como abrir arquivo, cálcular o tempo, os enums e outras coisas, estão no arquivo auxx.
+Por que com 2 "x"? Sei lá, aux com 1 x só deu conflito com o vscode quando tentei usar no windows, talvez limitação do windows ou do vscode, eis o mistério.
+Os dados estão na pasta tests, os gráficos na pasta tests/images.
+
+Como já deve ter dado pra notar, o projeto está escrito em Swift, por que? Sei lá.
+Para rodar o código é necessário ter o swift instalado, os passo a passo para a instalação se encontra no site oficial: swift.org
+Sim, a linguagem é da Apple mas é open-source.
+
+Para rodar os testes, você deve modificar a função makeAndSaveTest no arquivo main, por exemplo:
+
+1. Executar o pior caso do quick:
+makeAndSaveTest(algorithm: .quick, cs: .worst, testPath: testPath)
+
+2. Executar o melhor caso do insertion:
+makeAndSaveTest(algorithm: .insertion, cs: .better, testPath: testPath)
+
+enum Algorithms: CaseIterable {
+    enum Cases: CaseIterable {
+        case better, medium, worst
+    }
+    case selection, insertion, merge, quick, distribution
+}
+
+better deveria ser best, mas agora é tarde kkkkk.
+
+Os parâmetros da função são dos tipos Algorithms e Algorithms.Cases, esses enums estão descritos acima.
+Como o parâmetro nomeado "algorithm" é do tipo Algorithms, em Swift, não preciso escrever Algorithms.quick, somente .quick, já que o swift entende que ele é um valor do enum.
+
+Depois de instalar o swift, navegue até a pasta raiz e execute:
+
+swift run
+
+Ele vai compilar e executar, o swift run pode ser executado em outras partes do projeto, mas execute na raiz, por que ele cria uma pasta chamada "tests" onde o comando for executado para salvar os dados.
+
+No salvamento dos dados, eu preferi utilizar a mediana ao invés da média aritmética, acho que é o ideal para esse problema de algumas execuções demorarem.
+Se utilizar a média aritmética, é praticamente impossivel o gráfico não ficar um pouco esquisito kkkkk.
+
+Estou enviando o .venv junto, mas talvez dê problema já que estou provavelmente em outro sistema operacional.
+Em caso de problema, apague e recrie
+Se quiser gerar o gráfico, será necessário criar um ambiente virtual em python e instalar o "matplotlib"
+python3 -m venv .venv
+(use python ao invés de python3 se for o caso)
+
+No linux:
+source .venv/bin/activate
+
+No windows: algo assim
+.venv/Scripts/Activate
+.venv\Scripts\Activate
+
+pip install matplotlib
+
+Depois de instalado o arquivo plot.py funciona assim:
+
+python3 plot.py <nomes dos algoritmos> -c <casos>
+onde o -c é opcional, por exemplo:
+
+Se quiser gerar o gráfico do insertion todos os casos:
+python3 plot.py insertion
+ou
+python3 plot.py insertion -c b m w
+
+Se quiser gerar o gráfico do insertion melhor caso:
+python3 plot.py insertion -c b
+
+Se quiser gerar o gráfico do insertion melhor e pior caso:
+python3 plot.py insertion -c b w
+
+Se quiser mais de um algoritmo: insertio e quick todos os casos:
+python3 plot.py insertion quick
+Se quiser mais de um algoritmo: insertio e quick melhor e médio caso:
+
+python3 plot.py insertion quick -c b m
+
+O b é convertido em better, o m em medium e o w em worst.
+O plot.py busca o <nome do arquivo>-<nome do caso completo>.txt ou seja, se deseja comparat o quick melhor com o insertion melhor e médio faça o seguinte:
+Apague o arquivo medio do quick e rode o comando
+
+python3 plot.py insertion quick -c b m
+
+Quando ele não acha, ele ignora.
+E um detalhe, se você colocar um caso que não existe, tipo:
+python3 plot.py insertion quick -c b j
+
+Ele considera que é o worst.

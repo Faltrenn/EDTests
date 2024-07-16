@@ -27,7 +27,7 @@ enum Algorithms: CaseIterable {
                 case .merge:
                     return mergeSort
                 case .quick:
-                    return { quick_sort_c(&$0, 0, Int32($0.count-1)) }
+                    return quickSort
                 case .distribution:
                     return distributionSort
             }
@@ -66,18 +66,17 @@ enum Algorithms: CaseIterable {
 }
 
 func bestCaseQuicksort(n: Int32) -> [Int32] {
-    guard n > 0 else { return [] }
     var array = Array(1...n)
     createBestCaseArray(&array, start: 0, end: n - 1)
     return array
 }
 
 func createBestCaseArray(_ array: inout [Int32], start: Int32, end: Int32) {
-    if start >= end { return }
+    guard start <= end else { return }
     let mid = (start + end) / 2
-    createBestCaseArray(&array, start: start + 1, end: mid)
+    createBestCaseArray(&array, start: start, end: mid-1)
     createBestCaseArray(&array, start: mid + 1, end: end)
-    array.swapAt(Int(start), Int(mid))
+    array.swapAt(Int(mid), Int(end))
 }
 
 func openFile(url: URL, execution: (FileHandle) -> Void) {
@@ -116,8 +115,8 @@ func makeAndSaveTest(algorithm: Algorithms, cs: Algorithms.Cases, testPath: URL)
     openFile(url: testPath.appending(path: algorithm.getTestFileName(cs: cs))) { file in
         for i in stride(from: 100, through: 10000, by: 100) {
             var times: [UInt64] = []
+            var arr = algorithm.getTestArray(cs: cs, difficulty: Int32(i))
             for _ in 1...10 {
-                var arr = algorithm.getTestArray(cs: cs, difficulty: Int32(i))
                 times.append(testAlgorithm(arr: &arr, execution: algorithm.function))
             }
             times.sort()

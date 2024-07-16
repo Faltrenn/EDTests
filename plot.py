@@ -21,11 +21,11 @@ cases = []
 start_cases = -1
 if "-c" in args:
     start_cases = args.index("-c") + 1
-    files = args[1: start_cases]
+    files = args[: start_cases]
     cases = args[start_cases:]
 else:
     cases = ["b", "m", "w"]
-    files = args[1:]
+    files = args
 
 files_path = []
 for file in files:
